@@ -1,0 +1,14 @@
+doctype html
+html
+    head
+      meta charset="utf-8"
+      title Slim Example
+      link rel="stylesheet" type="text/css" href="main.css"
+    body
+      header
+        h1
+          | Nicoversary
+        - @movies.each do |movie|
+          iframe frameborder="0" height="200" scrolling="no" src="https://ext.nicovideo.jp/thumb/#{movie["contentId"]}" style=("border:solid 1px #ccc;") width="350"
+            a href="https://www.nicovideo.jp/watch/#{movie["contentId"]}"
+              = movie["title"]
