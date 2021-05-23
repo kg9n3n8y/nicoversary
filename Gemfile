@@ -1,6 +1,9 @@
 source "https://rubygems.org"
 
 gem 'sinatra'
-gem 'sinatra-reloader'
-gem 'sinatra-contrib'
 gem 'slim'
+
+group :development do
+	gem 'sinatra-reloader'
+	gem 'sinatra-contrib'
+end

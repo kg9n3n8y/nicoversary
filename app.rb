@@ -1,9 +1,12 @@
 require 'sinatra'
-require 'sinatra/reloader'
 require 'uri'
 require 'net/http'
 require 'json'
 require 'date'
+
+if development?
+  require 'sinatra/reloader'
+end
 
 def nico_search(year, month, day ,tag)
 	api = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search"
