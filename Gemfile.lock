@@ -19,6 +19,8 @@ GEM
       rack-protection (= 2.1.0)
       sinatra (= 2.1.0)
       tilt (~> 2.0)
+    sinatra-reloader (1.0)
+      sinatra-contrib
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
@@ -33,6 +35,7 @@ PLATFORMS
 DEPENDENCIES
   sinatra
   sinatra-contrib
+  sinatra-reloader
   slim
 
 BUNDLED WITH

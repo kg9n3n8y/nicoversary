@@ -14,7 +14,7 @@ html
       .main
         .option-wrapper
           p.date
-            = "＼ #{@month}月#{@day}日 に投稿された動画 ／"
+            = "投稿日：#{@month}月#{@day}日"
           .btn-container
             - p_date = Date.new(@year, @month, @day).prev_day(1)
             a.btn href="/#{p_date.year}/#{p_date.month}/#{p_date.day}/#{@tag}"
@@ -24,9 +24,9 @@ html
               | １日後
           .category
             - if @tag == ""
-              = "現在：タグ検索なし"
+              = "表示中：タグ検索なし"
             - else
-              = "現在：#{@tag}"
+              = "表示中：#{@tag}"
           .tag-container
             select onchange="location.href=value;" class="list"
               option value=""  タグ検索
@@ -48,8 +48,8 @@ html
         .wrapper
           - i = 1
           - @movies.each do |movie|
-            a href="https://nico.ms/#{movie["contentId"]}"
-              section.container
+            a.container href="https://nico.ms/#{movie["contentId"]}"
+              section
                 .img
                   img src="#{movie["thumbnailUrl"]}"
                 .textbox.title
@@ -67,6 +67,7 @@ html
                 span.rank
                   = i
                   - i += 1
+        hr
         .option-wrapper
           a.btn href="#"
             | 一番上へ

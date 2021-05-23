@@ -17,7 +17,7 @@ footer {
 }
 
 h1 {
-	font-size: 48px;
+	font-size: 42px;
 }
 
 a {
@@ -29,8 +29,13 @@ select {
 	margin: 10px;
 	font-size: 18px;
 	border:1px solid #ccc;
-	width: 300px;
+	background-image: linear-gradient(#fff,#eee);
+	width: 280px;
 	font-size: 20px;
+}
+
+select:hover {
+	background-image: linear-gradient(#eee,#ccc);
 }
 
 hr {
@@ -51,6 +56,7 @@ hr {
 .main {
 	background-color: #fff;
 	padding: 1px 0;
+	width: 100%;
 }
 
 .img {
@@ -64,13 +70,13 @@ hr {
 }
 
 .logo-icon {
-	width: 36px;
-	height: 36px;
+	width: 32px;
+	height: 32px;
 	margin-right: 10px;
 }
 
 .option-wrapper {
-	width: 350px;
+	width: 100%;
 	margin: 20px auto;
 	text-align: center;
 	font-size: 20px;
@@ -91,7 +97,7 @@ hr {
   color: #333;
 	border-radius: 5px;
   cursor: pointer;
-	padding: 5px 30px;
+	padding: 5px 25px;
 }
 
 .btn:hover {
@@ -101,7 +107,8 @@ hr {
 .wrapper {
 	display: flex;
 	justify-content: center;
-	flex-flow:wrap;
+	flex-flow: row wrap;
+	width: 100%;
 }
 
 .container {
@@ -111,10 +118,11 @@ hr {
   border-radius: 5px;
   color: #333;
   cursor: pointer;
-	min-width: 350px;
   padding: 8px;
 	margin: 8px;
 	position: relative;
+	box-sizing: border-box;
+	display: block;
 }
 
 .container:hover {
@@ -123,8 +131,8 @@ hr {
 
 .textbox {
 	position: absolute;
-	left: 155px;
-	margin: 0 5px 0 0;
+	left: 150px;
+	margin: 0 8px 0 0;
 }
 
 .title {
@@ -150,11 +158,12 @@ hr {
 .rank {
 	position: absolute;
 	right: 5px;
-	bottom: -10px;
+	top: -8px;
 	font-size: 40px;
 	font-style: italic;
 	font-weight: bold;
-	color: #aaa;
+	color: #666;
+	opacity: 0.2;
 }
 
 .mini-icon {
@@ -169,4 +178,29 @@ hr {
 
 .ml-50 {
 	margin-left: 50px;
+}
+
+@media screen and (max-width:699.98px) { 
+	.container {
+		margin: 8px 0;
+		flex-basis: 98%;
+	}
+}
+
+@media screen and (min-width:700px) and (max-width:1099.98px) { 
+	.container {
+		flex-basis: 47%;
+	}
+}
+
+@media screen and (min-width:1100px) and (max-width:1499.98px) { 
+	.container {
+		flex-basis: 31%;
+	}
+}
+
+@media screen and (min-width:1500px) { 
+	.container {
+		flex-basis: 23%;
+	}
 }

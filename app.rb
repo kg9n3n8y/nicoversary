@@ -1,10 +1,10 @@
 require 'bundler/setup'
 require 'sinatra'
-require 'sinatra/reloader' if development?
 require 'uri'
 require 'net/http'
 require 'json'
 require 'date'
+# require 'sinatra/reloader'
 
 def nico_search(year, month, day ,tag)
 	api = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search"
