@@ -1,8 +1,9 @@
 doctype html
 html
     head
+      meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"
       meta charset="utf-8"
-      title Nicoversary
+      title Nicoversary!
       link href="/main.css" rel="stylesheet" type="text/css"
     body
       header
@@ -10,46 +11,51 @@ html
           h1.logo
             img.logo-icon src="/icon_tv.svg"
             | Nicoversary!
-        h2.logo
-          = "＼ #{@month}月#{@day}日 に投稿された動画 ／"
-      .option-wrapper
-        .btn-container
-          - p_date = Date.new(@year, @month, @day).prev_day(1)
-          a.btn href="/#{p_date.year}/#{p_date.month}/#{p_date.day}/#{@tag}"
-            | １日前
-          - n_date = Date.new(@year, @month, @day).next_day(1)
-          a.btn.ml-30 href="/#{n_date.year}/#{n_date.month}/#{n_date.day}/#{@tag}"
-            | １日後
-        .tag-container
-          select onchange="location.href=value;" class="list"
-            option value=""  タグ検索
-            option value="./"  なし
-            option value="./VOCALOID"  VOCALOID
-            option value="./エンターテイメント"  エンターテイメント
-            option value="./アニメ"  アニメ
-            option value="./ゲーム"  ゲーム
-            option value="./実況プレイ動画"  実況プレイ動画
-            option value="./歌ってみた"  歌ってみた
-            option value="./踊ってみた"  踊ってみた
-            option value="./作ってみた"  作ってみた
-            option value="./例のアレ"  例のアレ
-        .category
-          - if @tag == ""
-            = "現在：タグ検索なし"
-          - else
-            = "現在：#{@tag}"
       .main
-        - i = 1
-        - @movies.each do |movie|
-          .wrapper
+        .option-wrapper
+          p.date
+            = "＼ #{@month}月#{@day}日 に投稿された動画 ／"
+          .btn-container
+            - p_date = Date.new(@year, @month, @day).prev_day(1)
+            a.btn href="/#{p_date.year}/#{p_date.month}/#{p_date.day}/#{@tag}"
+              | １日前
+            - n_date = Date.new(@year, @month, @day).next_day(1)
+            a.btn.ml-50 href="/#{n_date.year}/#{n_date.month}/#{n_date.day}/#{@tag}"
+              | １日後
+          .category
+            - if @tag == ""
+              = "現在：タグ検索なし"
+            - else
+              = "現在：#{@tag}"
+          .tag-container
+            select onchange="location.href=value;" class="list"
+              option value=""  タグ検索
+              option value="./"  なし
+              option value="./VOCALOID"  VOCALOID
+              option value="./アイドルマスター"  アイドルマスター
+              option value="./東方Project"  東方Project
+              option value="./エンターテイメント"  エンターテイメント
+              option value="./音楽"  音楽
+              option value="./アニメ"  アニメ
+              option value="./音MAD"  音MAD
+              option value="./ゲーム"  ゲーム
+              option value="./実況プレイ動画"  実況プレイ動画
+              option value="./例のアレ"  例のアレ
+              option value="./重要ニコニコ文化財"  重要ニコニコ文化財
+              option value="./定期的に見たくなる動画"  定期的に見たくなる動画
+              option value="./全ての元凶"  全ての元凶
+        hr
+        .wrapper
+          - i = 1
+          - @movies.each do |movie|
             a href="https://nico.ms/#{movie["contentId"]}"
-              .container
+              section.container
                 .img
                   img src="#{movie["thumbnailUrl"]}"
                 .textbox.title
                   p.anniversary
-                    - anniversary = @year.to_i - movie["startTime"].split('-')[0].to_i
-                    = "＼#{anniversary}周年／"
+                    - anniversary = @year - movie["startTime"].split('-')[0].to_i
+                    = "＼ #{anniversary}周年 ／"
                   p.text
                     = movie["title"]
                 .textbox.num
@@ -61,4 +67,9 @@ html
                 span.rank
                   = i
                   - i += 1
+        .option-wrapper
+          a.btn href="#"
+            | 一番上へ
       footer
+        p
+          | Copyright &copy; 2021 AmaiOmikan All Rights Reserved.

@@ -8,15 +8,16 @@ require 'date'
 def nico_search(year, month, day ,tag)
 	api = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search"
 	keyword = URI.encode_www_form_component(tag)
+	start_year = 2007
 	targets = "tagsExact"
 	fields = "contentId,title,startTime,thumbnailUrl,viewCounter,commentCounter"
 	viewcounts = "10000"
 	sort = "-viewCounter"
 	limit = "100"
-	appname = "NiconicoKinenbiSearch"
+	appname = "Nicoversary"
 
 	date_filter = []
-	(2007..year.to_i).each do |y|
+	(start_year..year.to_i).each do |y|
 		date_filter << {
 			"type": "range",
 			"field": "startTime",
@@ -41,6 +42,7 @@ end
 get '/*/*/*/*' do |year, month, day, tag|
 	@tag = tag
 	@year = year.to_i
+	redirect to('/') if @year < 2008
 	@month = month.to_i
 	@day = day.to_i
 	@movies = nico_search(@year, @month, @day ,tag)
