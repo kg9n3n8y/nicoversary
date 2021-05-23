@@ -6,7 +6,7 @@
 
 # 参考イメージ
 
-![利用図](./images/readme_image.png "利用図")
+<img src="./images/readme_image.png" width="350px">
 
 # 使い方
 
