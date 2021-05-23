@@ -5,17 +5,15 @@ require 'net/http'
 require 'json'
 require 'date'
 
-def nico_search
+def nico_search(year, month, day ,tag)
 	api = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search"
-	keywords = ""
-	targets = "tags"
-	fields = "contentId,title,viewCounter"
-	viewcounts = "100000"
+	keyword = URI.encode_www_form_component(tag)
+	targets = "tagsExact"
+	fields = "contentId,title,startTime,thumbnailUrl,viewCounter,commentCounter"
+	viewcounts = "10000"
 	sort = "-viewCounter"
 	limit = "100"
 	appname = "NiconicoKinenbiSearch"
-
-	year, month, day = Date.today.to_s.split('-')
 
 	date_filter = []
 	(2007..year.to_i).each do |y|
@@ -32,9 +30,7 @@ def nico_search
 
 	json_filter = URI.encode_www_form_component(json_filter)
 
-	url = "#{api}?q=#{keywords}&targets=#{targets}&fields=#{fields}&filters[viewCounter][gte]=#{viewcounts}&jsonFilter=#{json_filter}&_sort=#{sort}&_limit=#{limit}&_context=#{appname}"
-	p url
-
+	url = "#{api}?q=#{keyword}&targets=#{targets}&fields=#{fields}&filters[viewCounter][gte]=#{viewcounts}&jsonFilter=#{json_filter}&_sort=#{sort}&_limit=#{limit}&_context=#{appname}"
 	uri = URI.parse(url)
 	res = Net::HTTP.get(uri)
 	res_json = JSON.parse(res)
@@ -42,7 +38,20 @@ def nico_search
 	return res_json["data"]
 end
 
-get '/' do
-	@movies = nico_search
+get '/*/*/*/*' do |year, month, day, tag|
+	@tag = tag
+	@year = year.to_i
+	@month = month.to_i
+	@day = day.to_i
+	@movies = nico_search(@year, @month, @day ,tag)
+	slim :index
+end
+
+get '/*' do |tag|
+	@tag = tag
+	@year = Date.today.year
+	@month = Date.today.month
+	@day = Date.today.day
+	@movies = nico_search(@year, @month, @day ,tag)
 	slim :index
 end

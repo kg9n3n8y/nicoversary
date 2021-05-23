@@ -2,13 +2,63 @@ doctype html
 html
     head
       meta charset="utf-8"
-      title Slim Example
-      link rel="stylesheet" type="text/css" href="main.css"
+      title Nicoversary
+      link href="/main.css" rel="stylesheet" type="text/css"
     body
       header
-        h1
-          | Nicoversary
+        a href="/"
+          h1.logo
+            img.logo-icon src="/icon_tv.svg"
+            | Nicoversary!
+        h2.logo
+          = "＼ #{@month}月#{@day}日 に投稿された動画 ／"
+      .option-wrapper
+        .btn-container
+          - p_date = Date.new(@year, @month, @day).prev_day(1)
+          a.btn href="/#{p_date.year}/#{p_date.month}/#{p_date.day}/#{@tag}"
+            | １日前
+          - n_date = Date.new(@year, @month, @day).next_day(1)
+          a.btn.ml-30 href="/#{n_date.year}/#{n_date.month}/#{n_date.day}/#{@tag}"
+            | １日後
+        .tag-container
+          select onchange="location.href=value;" class="list"
+            option value=""  タグ検索
+            option value="./"  なし
+            option value="./VOCALOID"  VOCALOID
+            option value="./エンターテイメント"  エンターテイメント
+            option value="./アニメ"  アニメ
+            option value="./ゲーム"  ゲーム
+            option value="./実況プレイ動画"  実況プレイ動画
+            option value="./歌ってみた"  歌ってみた
+            option value="./踊ってみた"  踊ってみた
+            option value="./作ってみた"  作ってみた
+            option value="./例のアレ"  例のアレ
+        .category
+          - if @tag == ""
+            = "現在：タグ検索なし"
+          - else
+            = "現在：#{@tag}"
+      .main
+        - i = 1
         - @movies.each do |movie|
-          iframe frameborder="0" height="200" scrolling="no" src="https://ext.nicovideo.jp/thumb/#{movie["contentId"]}" style=("border:solid 1px #ccc;") width="350"
-            a href="https://www.nicovideo.jp/watch/#{movie["contentId"]}"
-              = movie["title"]
+          .wrapper
+            a href="https://nico.ms/#{movie["contentId"]}"
+              .container
+                .img
+                  img src="#{movie["thumbnailUrl"]}"
+                .textbox.title
+                  p.anniversary
+                    - anniversary = @year.to_i - movie["startTime"].split('-')[0].to_i
+                    = "＼#{anniversary}周年／"
+                  p.text
+                    = movie["title"]
+                .textbox.num
+                  p.text
+                    img.mini-icon src="/icon_play.svg" focusable="false"
+                    = movie["viewCounter"]
+                    img.mini-icon.ml-15 src="/icon_comment.svg" focusable="false" 
+                    = movie["commentCounter"]
+                span.rank
+                  = i
+                  - i += 1
+      footer

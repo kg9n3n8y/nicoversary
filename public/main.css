@@ -1,3 +1,142 @@
-h1{
-	color: red;
+body {
+	margin: 0;
+	font-family: Avenir,Lato,-apple-system,BlinkMacSystemFont,Helvetica Neue,Hiragino Kaku Gothic ProN,Meiryo,メイリオ,sans-serif;
 }
+
+header {
+	background-color: #000;
+	padding: 10px 0;
+}
+
+h1 {
+	font-size: 48px;
+}
+
+h2 {
+	font-size: 22px;
+}
+
+a {
+	text-decoration: none;
+}
+
+select {
+	display:inline-block;
+	margin: 0 10px 0 0;
+	font-size: 18px;
+	border:1px solid #ccc;
+}
+
+.logo {
+	color: #fff;
+	text-align: center;
+	margin: 5px 0;
+}
+
+.logo-icon {
+	width: 36px;
+	height: 36px;
+	margin-right: 10px;
+}
+
+.option-wrapper {
+	width: 90%;
+	margin: 15px auto;
+	text-align: center;
+	font-size: 20px;
+}
+
+.category {
+	margin: 10px 0;
+	font-weight: bold;
+}
+
+.btn-container {
+	margin-bottom: 20px;
+}
+
+.btn {
+  background-image: linear-gradient(#fff,#eee);
+  border: 1px solid #ccc;
+  color: #333;
+	border-radius: 5px;
+  cursor: pointer;
+	padding: 5px 20px;
+}
+
+.btn:hover {
+	background-image: linear-gradient(#eee,#ccc);
+}
+
+.list {
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+.container {
+	text-decoration: none;
+  background-image: linear-gradient(#fff,#eee);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+  cursor: pointer;
+	width: 90%;
+  padding: 5px 14px;
+	margin: 8px auto;
+	position: relative;
+}
+
+.container:hover {
+  background-image: linear-gradient(#eee,#ccc);
+}
+
+.textbox {
+	position: absolute;
+	left: 155px;
+	margin: 0 5px 0 0;
+}
+
+.title {
+	top: 5px;
+}
+
+.num {
+	bottom: 5px;
+}
+
+.anniversary {
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0;
+}
+
+.text {
+	font-size: 13px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
+
+.rank {
+	position: absolute;
+	right: 5px;
+	bottom: -10px;
+	font-size: 40px;
+	font-style: italic;
+	font-weight: bold;
+	color: #ccc;
+}
+
+.mini-icon {
+	width: 10px;
+	height: 10px;
+	margin: 0 5px 0 0;
+}
+
+.ml-15 {
+	margin-left: 15px;
+}
+
+.ml-30 {
+	margin-left: 30px;
+}
+
