@@ -26,8 +26,6 @@ a {
 
 select {
 	display:inline-block;
-	margin: 10px;
-	font-size: 18px;
 	border:1px solid #ccc;
 	background-image: linear-gradient(#fff,#eee);
 	width: 280px;
@@ -45,12 +43,6 @@ hr {
 	border-top: double;
 	border-color: #999;
 	max-width: 95%;
-}
-
-.date {
-	font-size: 22px;
-	font-weight: bold;
-	margin-bottom: 15px;
 }
 
 .main {
@@ -76,19 +68,23 @@ hr {
 }
 
 .option-wrapper {
-	width: 100%;
-	margin: 20px auto;
+	display: flex;
+	justify-content: center;
+	flex-flow: row wrap;
+	margin-bottom: 20px;
+}
+
+.option-flexitem {
 	text-align: center;
-	font-size: 20px;
+	box-sizing: border-box;
+	display: block;
+	margin-bottom: 10px;
 }
 
-.category {
-	margin: 1px 0;
+.option-text {
+	font-size: 22px;
 	font-weight: bold;
-}
-
-.btn-container {
-	margin-bottom: 40px;
+	margin-bottom: 15px;
 }
 
 .btn {
@@ -147,6 +143,7 @@ hr {
 	font-size: 18px;
 	font-weight: bold;
 	margin: 0;
+	color: #09f;
 }
 
 .text {
@@ -185,11 +182,17 @@ hr {
 		margin: 8px 0;
 		flex-basis: 98%;
 	}
+	.option-flexitem {
+		flex-basis: 98%;
+	}
 }
 
 @media screen and (min-width:700px) and (max-width:1099.98px) { 
 	.container {
 		flex-basis: 47%;
+	}
+	.option-flexitem {
+		flex-basis: 98%;
 	}
 }
 
@@ -197,10 +200,16 @@ hr {
 	.container {
 		flex-basis: 31%;
 	}
+	.option-flexitem {
+		flex-basis: 47%;
+	}
 }
 
 @media screen and (min-width:1500px) { 
 	.container {
 		flex-basis: 23%;
+	}
+	.option-flexitem {
+		flex-basis: 47%;
 	}
 }

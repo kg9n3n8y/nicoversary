@@ -1,6 +1,6 @@
 # Nicoversary!
 
-[Herokuにデプロイしたもの](https://nicoversary.herokuapp.com/)
+https://nicoversary.herokuapp.com/
 
 ニコニコ動画の動画では，「〇〇周年記念にまた見に来た」という内容のコメントを見かけます。
 
@@ -8,7 +8,7 @@
 
 # 参考イメージ
 
-<img src="./images/readme_image.png" width="350px">
+<img src="./images/readme_image.png" width="640px">
 
 # 使い方
 
@@ -52,7 +52,9 @@
 
 また，以下のAPIを使わせていただきました。
 
-- [ニコニコ動画 『スナップショット検索API v2』](https://site.nicovideo.jp/search-api-docs/snapshot)	
+ニコニコ動画 『スナップショット検索API v2』
+
+https://site.nicovideo.jp/search-api-docs/snapshot
 
 # License
 
