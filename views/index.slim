@@ -62,10 +62,10 @@ html
                 .img
                   img src="#{movie["thumbnailUrl"]}"
                 .textbox.title
-                  p.anniversary
+                  p.anniversary.bold
                     - anniversary = @year - movie["startTime"].split('-')[0].to_i
                     = "＼ #{anniversary}周年 ／"
-                  p.text
+                  p.text.bold
                     = movie["title"]
                 .textbox.num
                   p.text
