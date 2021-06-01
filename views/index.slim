@@ -24,10 +24,10 @@ html
             p.option-text
               = "投稿日：#{@month}月#{@day}日"
             .btn-container
-              - p_date = Date.new(@year, @month, @day).prev_day(1)
+              - p_date = Date.new(@year.to_i, @month.to_i, @day.to_i).prev_day(1)
               a.btn href="/#{p_date.year}/#{p_date.month}/#{p_date.day}/#{@tag}"
                 | １日前
-              - n_date = Date.new(@year, @month, @day).next_day(1)
+              - n_date = Date.new(@year.to_i, @month.to_i, @day.to_i).next_day(1)
               a.btn.ml-50 href="/#{n_date.year}/#{n_date.month}/#{n_date.day}/#{@tag}"
                 | １日後
           .option-flexitem
@@ -63,7 +63,7 @@ html
                   img src="#{movie["thumbnailUrl"]}"
                 .textbox.title
                   p.anniversary.bold
-                    - anniversary = @year - movie["startTime"].split('-')[0].to_i
+                    - anniversary = @year.to_i - movie["startTime"].split('-')[0].to_i
                     = "＼ #{anniversary}周年 ／"
                   p.text.bold
                     = movie["title"]

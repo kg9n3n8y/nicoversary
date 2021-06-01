@@ -33,6 +33,7 @@ def nico_search(year, month, day ,tag)
 	json_filter = URI.encode_www_form_component(json_filter)
 
 	url = "#{api}?q=#{keyword}&targets=#{targets}&fields=#{fields}&filters[viewCounter][gte]=#{viewcounts}&jsonFilter=#{json_filter}&_sort=#{sort}&_limit=#{limit}&_context=#{appname}"
+
 	uri = URI.parse(url)
 	res = Net::HTTP.get(uri)
 	res_json = JSON.parse(res)
@@ -41,20 +42,28 @@ def nico_search(year, month, day ,tag)
 end
 
 get '/*/*/*/*' do |year, month, day, tag|
-	@tag = tag
 	@year = year.to_i
-	redirect to('/') if @year < 2008
+	redirect to('/') if @year < 2008 || 2025 < @year
 	@month = month.to_i
 	@day = day.to_i
-	@movies = nico_search(@year, @month, @day ,tag)
+	@tag = tag
+	today = Date.new(@year, @month, @day)
+	year = today.strftime("%Y")
+	month = today.strftime("%m")
+	day = today.strftime("%d")
+	@movies = nico_search(year, month, day ,tag)
 	slim :index
 end
 
 get '/*' do |tag|
+	today = Date.today
+	year = today.strftime("%Y")
+	month = today.strftime("%m")
+	day = today.strftime("%d")
+	@year = year.to_i
+	@month = month.to_i
+	@day = day.to_i
 	@tag = tag
-	@year = Date.today.year
-	@month = Date.today.month
-	@day = Date.today.day
-	@movies = nico_search(@year, @month, @day ,tag)
+	@movies = nico_search(year, month, day ,tag)
 	slim :index
 end
