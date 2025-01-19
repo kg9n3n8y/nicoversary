@@ -7,7 +7,7 @@ require 'date'
 # require 'sinatra/reloader'
 
 def nico_search(year, month, day ,tag)
-	api = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search"
+	api = "https://snapshot.search.nicovideo.jp/api/v2/snapshot/video/contents/search"
 	keyword = URI.encode_www_form_component(tag)
 	start_year = 2007
 	targets = "tagsExact"
