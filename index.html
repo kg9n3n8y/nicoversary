@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nicoversary! - ニコニコ動画の投稿周年動画検索</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 id="title-logo">Nicoversary!</h1>
+      <p>ニコニコ動画の投稿周年動画を検索するアプリ</p>
+    </header>
+
+    <div class="search-controls">
+      <div class="date-navigation">
+        <button id="prev-day">1日前</button>
+        <span id="current-date"></span>
+        <button id="next-day">1日後</button>
+      </div>
+      
+      <div class="tag-selection">
+        <label for="tag-select">タグ検索:</label>
+        <select id="tag-select">
+          <option value="">すべてのタグ</option>
+          <option value="VOCALOID">VOCALOID</option>
+          <option value="ゲーム">ゲーム</option>
+          <option value="アニメ">アニメ</option>
+          <option value="音楽">音楽</option>
+          <option value="エンターテイメント">エンターテイメント</option>
+          <option value="実況プレイ動画">実況プレイ動画</option>
+        </select>
+        <input type="text" id="custom-tag" placeholder="カスタムタグを入力">
+        <button id="search-button">検索</button>
+      </div>
+    </div>
+
+    <div class="results-info">
+      <p>※10000再生以上の動画を再生数順に表示しています</p>
+      <p id="search-status">検索中...</p>
+    </div>
+
+    <div id="results-container" class="results-grid">
+      <!-- 検索結果がここに表示されます -->
+    </div>
+
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+    </div>
+
+    <footer>
+      <p>データ提供: ニコニコ動画 『スナップショット検索API v2』</p>
+      <p><a href="https://site.nicovideo.jp/search-api-docs/snapshot" target="_blank">API詳細</a></p>
+    </footer>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
