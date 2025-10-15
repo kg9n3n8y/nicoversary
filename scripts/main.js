@@ -1,7 +1,7 @@
 const START_YEAR = 2007;
 const MIN_YEAR = 2008;
 const MAX_YEAR = 2025;
-const API_ENDPOINT = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search";
+const API_ENDPOINT = "https://snapshot.search.nicovideo.jp/api/v2/snapshot/video/contents/search";
 const VIEW_COUNTER_MIN = 10000;
 const MIN_DATE = new Date(MIN_YEAR, 0, 1);
 const MAX_DATE = new Date(MAX_YEAR, 11, 31);
@@ -89,18 +89,23 @@ function formatLabelDate(date) {
 }
 
 function createJsonFilter(date) {
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-
   const filters = [];
-  for (let y = START_YEAR; y <= year; y += 1) {
+  for (let year = START_YEAR; year <= date.getFullYear(); year += 1) {
+    const rangeStart = new Date(year, date.getMonth(), date.getDate());
+    if (rangeStart.getMonth() !== date.getMonth() || rangeStart.getDate() !== date.getDate()) {
+      // 指定日が存在しない年（例: 2月29日）をスキップ
+      continue;
+    }
+    const rangeEnd = new Date(rangeStart);
+    rangeEnd.setDate(rangeEnd.getDate() + 1);
+
     filters.push({
       type: "range",
       field: "startTime",
-      from: `${y}-${month}-${day}T00:00:00+09:00`,
-      to: `${y}-${month}-${day}T23:59:59+09:00`,
+      from: `${formatDate(rangeStart)}T00:00:00+09:00`,
+      to: `${formatDate(rangeEnd)}T00:00:00+09:00`,
       include_lower: true,
+      include_upper: false,
     });
   }
 
@@ -109,15 +114,19 @@ function createJsonFilter(date) {
 
 function buildSearchUrl(state) {
   const params = new URLSearchParams();
-  params.set("targets", "tagsExact");
+  const tagQuery = typeof state.tag === "string" ? state.tag.trim() : "";
+  if (tagQuery) {
+    params.set("targets", "tagsExact");
+  }
   params.set("fields", "contentId,title,startTime,thumbnailUrl,viewCounter,commentCounter");
   params.set("filters[viewCounter][gte]", String(VIEW_COUNTER_MIN));
   params.set("_sort", "-viewCounter");
   params.set("_limit", "100");
+  params.set("_offset", "0");
   params.set("_context", "NicoversaryStatic");
 
   params.set("jsonFilter", createJsonFilter(state.date));
-  params.set("q", state.tag);
+  params.set("q", tagQuery);
 
   return `${API_ENDPOINT}?${params.toString()}`;
 }
