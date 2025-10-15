@@ -1,60 +1,74 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nicoversary! - ニコニコ動画の投稿周年動画検索</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <title>Nicoversary!</title>
+    <meta
+      name="description"
+      content="Nicoversary!は，ニコニコ動画を投稿日で検索して再生数の順にランキング表示し，投稿◯周年の動画を探せるWebサービスです。懐かしいあの動画をニコニコ動画で久しぶりに見て，「◯周年記念視聴」のコメントを残しましょう！"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@AmaiOmikan" />
+    <meta name="twitter:title" content="Nicoversary!" />
+    <meta name="twitter:description" content="ニコニコ動画を投稿日で検索して，投稿◯周年の人気動画を探せるWebサービス" />
+    <meta name="twitter:image" content="https://kg9n3n8y.github.io/public/twitter_card.png" />
+    <link rel="icon" href="./public/favicon.ico" />
+    <link rel="stylesheet" href="./public/main.css" />
+  </head>
+  <body>
+    <a id="top" class="skip-anchor" href="#main">Skip to main</a>
     <header>
-      <h1 id="title-logo">Nicoversary!</h1>
-      <p>ニコニコ動画の投稿周年動画を検索するアプリ</p>
+      <a href="./">
+        <h1 class="logo">
+          <img class="logo-icon" src="./public/icon_tv.svg" alt="ニコニコ動画のアイコン" />
+          Nicoversary!
+        </h1>
+      </a>
     </header>
-
-    <div class="search-controls">
-      <div class="date-navigation">
-        <button id="prev-day">1日前</button>
-        <span id="current-date"></span>
-        <button id="next-day">1日後</button>
-      </div>
-      
-      <div class="tag-selection">
-        <label for="tag-select">タグ検索:</label>
-        <select id="tag-select">
-          <option value="">すべてのタグ</option>
-          <option value="VOCALOID">VOCALOID</option>
-          <option value="ゲーム">ゲーム</option>
-          <option value="アニメ">アニメ</option>
-          <option value="音楽">音楽</option>
-          <option value="エンターテイメント">エンターテイメント</option>
-          <option value="実況プレイ動画">実況プレイ動画</option>
-        </select>
-        <input type="text" id="custom-tag" placeholder="カスタムタグを入力">
-        <button id="search-button">検索</button>
-      </div>
-    </div>
-
-    <div class="results-info">
-      <p>※10000再生以上の動画を再生数順に表示しています</p>
-      <p id="search-status">検索中...</p>
-    </div>
-
-    <div id="results-container" class="results-grid">
-      <!-- 検索結果がここに表示されます -->
-    </div>
-
-    <div id="loading" class="loading">
-      <div class="spinner"></div>
-    </div>
-
+    <main id="main" class="main">
+      <section class="option-wrapper">
+        <div class="option-flexitem">
+          <p class="option-text" id="date-label"></p>
+          <div class="btn-container">
+            <a class="btn" href="#" id="prev-day">１日前</a>
+            <a class="btn ml-50" href="#" id="next-day">１日後</a>
+          </div>
+        </div>
+        <div class="option-flexitem">
+          <p class="option-text" id="tag-label"></p>
+          <div class="tag-container">
+            <select class="list" id="tag-select">
+              <option value="__placeholder" disabled selected>タグ検索</option>
+              <option value="">なし</option>
+              <option value="VOCALOID">VOCALOID</option>
+              <option value="アイドルマスター">アイドルマスター</option>
+              <option value="東方Project">東方Project</option>
+              <option value="エンターテイメント">エンターテイメント</option>
+              <option value="音楽">音楽</option>
+              <option value="アニメ">アニメ</option>
+              <option value="音MAD">音MAD</option>
+              <option value="ゲーム">ゲーム</option>
+              <option value="実況プレイ動画">実況プレイ動画</option>
+              <option value="例のアレ">例のアレ</option>
+              <option value="重要ニコニコ文化財">重要ニコニコ文化財</option>
+              <option value="定期的に見たくなる動画">定期的に見たくなる動画</option>
+              <option value="全ての元凶">全ての元凶</option>
+            </select>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section class="wrapper" id="results"></section>
+      <section class="message-area" id="message" aria-live="polite"></section>
+      <hr />
+      <section class="option-wrapper">
+        <a class="btn" href="#top">一番上へ</a>
+      </section>
+    </main>
     <footer>
-      <p>データ提供: ニコニコ動画 『スナップショット検索API v2』</p>
-      <p><a href="https://site.nicovideo.jp/search-api-docs/snapshot" target="_blank">API詳細</a></p>
+      <p>Copyright &copy; 2021 AmaiOmikan All Rights Reserved.</p>
     </footer>
-  </div>
-  
-  <script src="script.js"></script>
-</body>
+    <script src="./scripts/main.js" defer></script>
+  </body>
 </html>
